@@ -68,6 +68,17 @@ x<-na.omit(x)
 x$TIME<-as.Date(x$TIME, format = "%m/%d/%Y")
 class(x$TIME)
 
+#x<-filter(x, GEO==y$GEO)
+
+myvars <- levels(x$GEO) %in% levels(y$GEO)
+
+xx$GEO <- subset(xx, myvars)
+
+xx<-subset(x, x$GEO %in% y$GEO)
+
+x<-subset(x, y$GEO %in% x$GEO)
+levels(xx$GEO)
+levels(y$GEO)
 
 library(tidyr)
 y<-gather(y, key = TIME, value = Employment_rate, 2:63)
